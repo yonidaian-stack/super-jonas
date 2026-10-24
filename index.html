@@ -735,4 +735,85 @@ burgerStart=function(){
  burgerRenderBuild('👨‍🍳 À toi de jouer !');
 };
 
+
+/* Dynamic burger customers: quantities, omissions, varied toppings and repeat orders. */
+const burgerExtra={pickle:{name:'Cornichons',icon:'🥒',say:'cornichon'},onion:{name:'Oignons',icon:'🧅',say:'oignon'},bacon:{name:'Bacon végétal',icon:'🥓',say:'tranche de bacon végétal'}};
+Object.entries(burgerExtra).forEach(([id,x])=>{burgerNames[id]=x.name;burgerIcons[id]=x.icon});
+let burgerCustomerIndex=0,burgerOrderCounts={},burgerTarget=[],burgerPaid=10,burgerPrice=9;
+function burgerMakeOrder(){
+ const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+ const counts={steak:rand(1,burgerCustomerIndex>0?2:1),cheese:rand(0,2),lettuce:rand(0,1),tomato:rand(0,2),pickle:rand(0,2),onion:rand(0,1),bacon:rand(0,1)};
+ if(!Object.values(counts).some((n,i)=>i>0&&n>0))counts.tomato=1;
+ burgerOrderCounts=counts;
+ burgerTarget=['bottom',...['steak','cheese','lettuce','tomato','pickle','onion','bacon'].flatMap(id=>Array(counts[id]).fill(id)),'top'];
+ burgerPrice=6+counts.steak*2+counts.cheese+Math.ceil((counts.tomato+counts.pickle+counts.bacon)/2);
+ burgerPaid=Math.ceil((burgerPrice+1)/5)*5;
+ const names={steak:['aucun steak','un steak','deux steaks'],cheese:['sans fromage','une tranche de fromage','deux tranches de fromage'],lettuce:['sans salade','de la salade'],tomato:['sans tomate','une tomate','deux tomates'],pickle:['sans cornichon','un cornichon','deux cornichons'],onion:['sans oignon','des oignons'],bacon:['sans bacon végétal','du bacon végétal']};
+ const parts=Object.entries(counts).map(([id,n])=>names[id][n]);
+ burgerSpeechOrder='Bonjour Chef Jonas ! Je voudrais un burger avec '+parts.filter(x=>!x.startsWith('sans ')).join(', ')+'. '+parts.filter(x=>x.startsWith('sans ')).join(', ')+'. Merci !';
+}
+let burgerSpeechOrder='';
+function burgerReplayOrder(){burgerSpeak(burgerSpeechOrder)}
+function burgerNewCustomer(){
+ burgerStop();burgerSpeechToken++;if(burgerCookTimeout)clearTimeout(burgerCookTimeout);
+ burgerMakeOrder();burgerStage='order';burgerStack=[];mode='burger';
+ const pict=Object.entries(burgerOrderCounts).filter(([id,n])=>n>0).map(([id,n])=>'<span style="display:inline-block;padding:5px 9px;margin:3px;background:#fff;border-radius:12px">'+burgerIcons[id]+' × '+n+'</span>').join('');
+ shell('🍔 Le Snack de Jonas',burgerBase('<div class="burger-speak"><button aria-label="Réécouter la commande" onclick="burgerReplayOrder()">🔊</button><span>👦 Nouveau client ! Écoute sa commande.</span></div><div class="burger-order">'+pict+'</div><div class="burger-stage">'+burgerSvg()+'</div><button class="burger-main-btn" onclick="burgerStart()">👨‍🍳 Je prépare le burger !</button>'));
+ burgerSayLater(burgerSpeechOrder);
+}
+burgerHome=function(){burgerCustomerIndex=0;burgerNewCustomer()};
+burgerStart=function(){burgerStage='build';burgerStack=[];burgerRenderBuild('👨‍🍳 À toi de jouer !')};
+function burgerNextWanted(){return burgerTarget[burgerStack.length]}
+function burgerLayer(id,y){
+ if(id==='pickle')return '<g fill="#83a93c" stroke="#476b27" stroke-width="4"><ellipse cx="130" cy="'+y+'" rx="44" ry="12"/><ellipse cx="221" cy="'+(y-2)+'" rx="44" ry="12"/></g>';
+ if(id==='onion')return '<g fill="none" stroke="#e8c1e8" stroke-width="8"><ellipse cx="135" cy="'+y+'" rx="44" ry="11"/><ellipse cx="217" cy="'+y+'" rx="44" ry="11"/></g>';
+ if(id==='bacon')return '<path d="M87 '+(y-8)+' Q125 '+(y-30)+' 160 '+(y-8)+' T244 '+(y-8)+' L271 '+(y+4)+' Q221 '+(y+20)+' 181 '+(y+5)+' T95 '+(y+9)+'Z" fill="#ba633a" stroke="#7b3e26" stroke-width="5"/><path d="M100 '+(y-4)+' Q150 '+(y-17)+' 193 '+(y-3)+' T252 '+(y-4)+'" fill="none" stroke="#efb08a" stroke-width="6"/>';
+ return '';
+}
+const burgerSvgBeforeVariety=burgerSvg;
+burgerSvg=function(){
+ const base=burgerSvgBeforeVariety();
+ if(!burgerStack.some(id=>burgerExtra[id]))return base;
+ // Replace only additional ingredient layers with their own drawings.
+ const extra=burgerStack.map((id,i)=>burgerExtra[id]?burgerLayer(id,229-i*30):'').join('');
+ return base.replace('</svg>',extra+'</svg>');
+};
+burgerRenderBuild=function(msg){
+ const next=burgerNextWanted();
+ const all=['bottom','steak','cheese','lettuce','tomato','pickle','onion','bacon','top'];
+ const counts={};burgerStack.forEach(id=>counts[id]=(counts[id]||0)+1);
+ const target=burgerOrderCounts;
+ const progress=Object.entries(target).filter(([id,n])=>n>0).map(([id,n])=>'<span style="display:inline-block;margin:3px;padding:4px 8px;background:#fff;color:#513b29;border-radius:12px">'+burgerIcons[id]+' '+(counts[id]||0)+'/'+n+'</span>').join('');
+ const prompt=next==='bottom'?'Commence par le pain du bas.':next==='top'?'Termine avec le pain du haut.':next==='steak'?'Ajoute un steak. Il cuit tout de suite.':'Ajoute '+(burgerExtra[next]?.name||burgerNames[next]).toLowerCase()+'.';
+ shell('🍔 Construis le burger',burgerBase('<div class="burger-speak"><button onclick="burgerReplayOrder()" aria-label="Réécouter le client">🔊</button><span>Réécouter le client</span><button onclick="burgerSpeak(burgerSpeechText)" aria-label="Écouter la prochaine étape">👂</button></div><div class="burger-order">'+progress+'</div><div class="burger-stage">'+burgerSvg()+'</div><div class="burger-message">'+(msg||'À toi de cuisiner !')+'</div><div class="burger-actions">'+all.map(id=>'<button aria-label="'+burgerNames[id]+'" onclick="burgerAdd(\''+id+'\')" '+((id==='bottom'&&burgerStack.includes('bottom'))||(id==='top'&&burgerStack.includes('top'))?'disabled':'')+'><span>'+burgerIcons[id]+'</span>'+burgerNames[id]+'</button>').join('')+'</div><button class="burger-main-btn" onclick="burgerUndo()">↶ Annuler</button>'));
+ burgerSayLater(prompt);
+};
+burgerAdd=function(id){
+ if(mode!=='burger'||burgerStage!=='build')return;
+ const next=burgerNextWanted();
+ if(id!==next){burgerSpeak('Attention ! Écoute la commande et choisis '+burgerNames[next]+'.');return}
+ if(id==='steak'){
+  burgerStage='sizzle';burgerSpeak('Pschhh ! Le steak cuit !');
+  const stage=document.querySelector('.burger-stage');if(stage)stage.insertAdjacentHTML('beforeend','<div class="burger-quick-cook" style="position:absolute;top:5px;left:0;right:0">🔥 PSSSCH ! 🔥</div>');
+  burgerCookTimeout=setTimeout(()=>{if(mode!=='burger'||burgerStage!=='sizzle')return;burgerStack.push(id);burgerStage='build';burgerAfterIngredient(id)},450);return;
+ }
+ burgerStack.push(id);burgerAfterIngredient(id);
+};
+burgerAfterIngredient=function(id){
+ if(burgerStack.length===burgerTarget.length){burgerStage='done';earn(4);burgerRenderDone()}else burgerRenderBuild('✨ Bravo ! '+burgerNames[id]+' ajouté.');
+};
+burgerRenderDone=function(){
+ const change=burgerPaid-burgerPrice;
+ const choices=[change,change+1,Math.max(0,change-1)].filter((x,i,a)=>a.indexOf(x)===i).sort(()=>Math.random()-.5);
+ shell('🎉 Burger servi !',burgerBase('<div class="burger-speak"><button onclick="burgerSpeak(burgerSpeechText)">🔊</button><span>Le client passe à la caisse !</span></div><div class="burger-stage">'+burgerSvg()+'</div><div class="burger-receipt">🍔 '+burgerPrice+' € · 💶 '+burgerPaid+' € · ❓ monnaie</div><div class="burger-actions">'+choices.map(n=>'<button onclick="burgerAnswer('+n+')"><span>🪙</span>'+n+' €</button>').join('')+'</div>'));
+ burgerSayLater('Bravo Jonas ! Le burger coûte '+burgerPrice+' euros. Le client donne '+burgerPaid+' euros. Combien dois-tu lui rendre ?');
+};
+burgerAnswer=function(n){
+ const change=burgerPaid-burgerPrice;
+ if(n!==change){burgerSpeak('Essaie encore ! Combien faut-il rendre au client ?');return}
+ burgerStage='finish';burgerCustomerIndex++;
+ shell('🏆 Bravo Chef !',burgerBase('<div class="burger-stage">'+burgerSvg()+'</div><div class="burger-message">🏆 Bravo ! '+change+' € de monnaie.</div><button class="burger-main-btn" onclick="burgerNewCustomer()">👦 Client suivant !</button><button class="burger-main-btn" onclick="burgerHome()">🏠 Recommencer</button>'));
+ burgerSayLater('Bravo Jonas ! Tu as rendu la bonne monnaie. Un autre client arrive !');
+};
+
 </script></body></html>
