@@ -719,4 +719,20 @@ burgerAnswer=function(n){
 const burgerBackBeforeAudio=goBack;
 goBack=function(){burgerSpeechToken++;if(burgerCookTimeout)clearTimeout(burgerCookTimeout);try{if('speechSynthesis' in window)window.speechSynthesis.cancel()}catch(e){}burgerBackBeforeAudio()};
 
+
+/* The customer speaks the complete order before cooking begins. */
+const burgerCustomerOrder='Bonjour Chef Jonas ! Je voudrais un burger avec un steak, une tranche de fromage, de la salade et une tomate. Merci !';
+function burgerReplayOrder(){burgerSpeak(burgerCustomerOrder)}
+burgerHome=function(){
+ burgerStop();burgerSpeechToken++;
+ if(burgerCookTimeout)clearTimeout(burgerCookTimeout);
+ burgerStage='order';burgerStack=[];mode='burger';
+ shell('🍔 Le Snack de Jonas',burgerBase('<div class="burger-speak"><button aria-label="Écouter la commande du client" onclick="burgerReplayOrder()">🔊</button><span>👦 Le client te parle ! Écoute sa commande.</span></div><div class="burger-stage">'+burgerSvg()+'</div><div class="burger-message">👂 Écoute la commande, puis prépare le burger !</div><button class="burger-main-btn" onclick="burgerStart()">👨‍🍳 J’ai compris ! Je cuisine !</button>'));
+ burgerSayLater(burgerCustomerOrder);
+};
+burgerStart=function(){
+ burgerStop();burgerStage='build';burgerStack=[];
+ burgerRenderBuild('👨‍🍳 À toi de jouer !');
+};
+
 </script></body></html>
