@@ -183,4 +183,60 @@ renderRead=function(){
   if(f)f.textContent='📖 Lecture';
 };
 
+
+/* Distinct exercises: a prebuilt, shuffled set of ten questions per mission. */
+let exerciseDeck=[];
+function shuffled(items){const a=items.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function buildExercises(m){
+ const items=[];
+ const add=(kind,a,b)=>items.push({kind,a,b,key:kind+':'+a+':'+b});
+ if(m==='numbers'||m==='challenge'){for(let a=1;a<=9;a++)add('numbers',a,0)}
+ if(m==='tens'||m==='challenge'){for(let a=1;a<=4;a++)for(let b=0;b<=9;b++)add('tens',a,b)}
+ if(m==='add'||m==='challenge'){for(let a=1;a<=9;a++)for(let b=1;b<=9;b++)if(a+b<=15)add('add',a,b)}
+ if(m==='train'){const syl=['MA','LA','MI','LI','SA','RA','MO','PA','SO','LO','SI','RO','PO','RI'];for(let i=0;i<syl.length;i++)add('train',i,0)}
+ if(m==='numbers'){for(let a=10;a<=12;a++)add('numbers',a,0)}
+ return shuffled(items).slice(0,10);
+}
+const originalStart=start;
+start=function(m){exerciseDeck=buildExercises(m);originalStart(m)};
+question=function(){
+ answered=false;feedback='';
+ if(!exerciseDeck.length)exerciseDeck=buildExercises(mode);
+ const q=exerciseDeck[Math.min(round,exerciseDeck.length-1)];
+ let title='',prompt='',visual='',correct='',opts=[];
+ if(q.kind==='numbers'){
+ title='🔢 Le royaume des nombres';correct=q.a;
+ const icon=['🚀','🍎','⭐','🐸','🦋','🍓','🌸','🐱','🌞','⚽'][round%10];
+ visual='<div class="big">'+Array(q.a).fill(icon).join(' ')+'</div>';
+ prompt='Compte les objets. Combien y en a-t-il ?';
+ opts=[correct,correct+1,correct===1?3:correct-1];
+ }else if(q.kind==='tens'){
+ title='🧊 La planète des dizaines';correct=q.a*10+q.b;
+ visual='<div class="big">'+q.a+' 🟦<span> dizaines</span><br>'+q.b+' 🔹<span> unités</span></div>';
+ prompt='Combien font '+q.a+' dizaines et '+q.b+' unités ?';
+ opts=[correct,correct+10,correct+1];
+ }else if(q.kind==='add'){
+ title='➕ La cité des additions';correct=q.a+q.b;
+ visual='<div class="big">'+q.a+' <span>+</span> '+q.b+' = ?</div>';
+ prompt='Compte et trouve le résultat !';
+ opts=[correct,correct+1,correct-1];
+ }else{
+ const syl=['MA','LA','MI','LI','SA','RA','MO','PA','SO','LO','SI','RO','PO','RI'];
+ correct=syl[q.a];title='🚂 Le train des syllabes';
+ visual='<div class="big">🚂 '+correct[0]+' + '+correct[1]+' = ?</div>';
+ prompt='Regarde les lettres. Quelle syllabe forment-elles ?';
+ opts=[correct,syl[(q.a+3)%syl.length],syl[(q.a+7)%syl.length]];
+ }
+ current={answer:String(correct),prompt};
+ const total=exerciseDeck.length;
+ shell(title,'<p class="hint">Mission '+(round+1)+' / '+total+'</p><div class="progress"><div style="width:'+(round/total*100)+'%"></div></div><div class="lesson">'+visual+'</div><p class="instruction">'+prompt+'</p><div id="answers">'+options(opts,correct)+'</div><div class="feedback" id="feedback"></div><div class="nav"><button class="action" onclick="say(current.prompt)">🔊 Réécouter</button></div>');
+ setTimeout(()=>say(prompt),150);
+};
+nextQuestion=function(){
+ round++;
+ if(round>=exerciseDeck.length){
+ shell('🏆 Mission accomplie !','<div class="lesson"><div class="big">⭐⭐⭐⭐⭐</div><p class="hint">Tu as terminé les '+exerciseDeck.length+' défis différents !</p></div><div class="nav"><button class="cta" onclick="start(mode)">🔁 Nouvelle série</button></div>');
+ }else question();
+};
+
 </script></body></html>
