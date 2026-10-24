@@ -1,6 +1,8 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0756c9"><title>Super Jonas — La Mission CP</title><style>
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap');
 :root{font-family:'Baloo 2',system-ui,sans-serif;color:#fff;background:#126ac8}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 70% 0,#66dcff 0,transparent 40%),linear-gradient(#0874d9,#44b6f5 60%,#0672b9);background-attachment:fixed}button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visible{outline:4px solid #ffdd27;outline-offset:3px}.app{max-width:1180px;margin:auto;padding:18px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;flex-wrap:wrap}.pill{border:3px solid #c6f4ff;background:#082b80;border-radius:20px;padding:7px 17px;box-shadow:0 5px #061a55;font-weight:800}.top button{color:white}.title{text-align:center;font-size:clamp(2.2rem,6vw,4.8rem);line-height:1.05;text-shadow:0 6px #073177;margin:20px auto}.sub{text-align:center;font-size:1.25rem;font-weight:800}.hero{position:relative;min-height:480px;border:5px solid #d3f8ff;border-radius:36px;box-shadow:0 12px #073879;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;background:linear-gradient(#074b9c55,#063a8a66),url('assets/hero-world.svg') center/cover}.hero:before{content:'';position:absolute;top:14%;left:4%;width:35%;height:60%;background:url('assets/super-jonas.svg') center/contain no-repeat;filter:drop-shadow(0 8px 10px #04296388);animation:bob 3s infinite}.hero h1{position:relative;text-align:center;font-size:clamp(3.5rem,10vw,7.7rem);line-height:.88;margin:30px 0 5px;color:#ffdc3a;-webkit-text-stroke:2px #fff;text-shadow:0 7px #f05b28,0 13px #08377c;transform:rotate(-3deg)}.hero p{background:#07286bdb;padding:8px 22px;border-radius:30px;font-size:1.2rem;font-weight:800}.hero .cta{margin:20px 0}.cta{border:4px solid white;border-radius:24px;background:linear-gradient(#ffed6e,#ffb300);color:#102e74;font-size:1.55rem;font-weight:800;padding:12px 36px;box-shadow:0 8px #b97106}.cta:active,.option:active{transform:translateY(4px);box-shadow:none}.worlds{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:25px 0}.world{position:relative;min-height:220px;border:4px solid #c9f5ff;border-radius:26px;box-shadow:0 8px #062a74;overflow:hidden;color:white;background:linear-gradient(0deg,#08236bed,transparent 75%),url('assets/worlds.svg') var(--pos) center/600% 100% no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:end;padding:16px}.world .symbol{font-size:3.7rem;filter:drop-shadow(0 4px 2px #05327e)}.world strong{font-size:1.28rem;text-shadow:0 3px #062660;line-height:1.1}.world small{background:#082c7d;border-radius:20px;padding:2px 15px;font-size:.95rem}.world:hover{transform:translateY(-4px)}.stage{border:5px solid #d4f6ff;border-radius:30px;background:linear-gradient(#f8fdff,#d8efff);color:#12377d;box-shadow:0 11px #07367b;padding:25px;max-width:900px;margin:20px auto;min-height:350px}.stage h2{font-size:clamp(1.7rem,4vw,2.6rem);text-align:center;margin:0 0 8px}.stage .hint{text-align:center;font-size:1.15rem;font-weight:700}.lesson{background:#fff;border:3px solid #9bd7fa;border-radius:24px;padding:20px;text-align:center;margin:20px auto;max-width:670px}.big{font-size:clamp(4rem,12vw,8rem);font-weight:800;line-height:1.15;color:#075bd0;letter-spacing:.03em}.big span{color:#ff6a35}.choices{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin:20px 0}.option{background:linear-gradient(#fff,#d6ecff);border:4px solid white;outline:2px solid #7fc4f5;border-radius:20px;min-width:100px;padding:12px 20px;color:#123e92;font-weight:800;font-size:clamp(1.5rem,4vw,2.3rem);box-shadow:0 6px #77a9dc}.action{border:0;background:#0b64d2;color:white;padding:12px 20px;border-radius:18px;font-weight:800;font-size:1.08rem;box-shadow:0 5px #073b89}.secondary{background:#fff;color:#0751aa;border:3px solid #83c5ef;box-shadow:0 4px #8cb7d6}.nav{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}.feedback{text-align:center;min-height:35px;font-weight:800;font-size:1.35rem}.robot{font-size:3rem}.progress{height:15px;border-radius:20px;background:#c4dcf4;overflow:hidden;max-width:500px;margin:12px auto}.progress>div{height:100%;background:linear-gradient(90deg,#1fc888,#ffdb3b);transition:width .3s}.palette{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0}.swatch{border:4px solid white;border-radius:50%;width:58px;height:58px;box-shadow:0 4px #8baed5}.swatch.selected{outline:5px solid #ffb400;transform:scale(1.1)}.art{display:block;width:min(100%,500px);max-height:390px;margin:12px auto;background:#fff;border-radius:22px;border:4px solid #a7d5f7}.art [data-part]{cursor:pointer;stroke:#173a70;stroke-width:5;transition:fill .2s}.instruction{background:#fff8d9;border:3px solid #ffcf54;border-radius:20px;padding:12px;text-align:center;font-size:1.3rem;font-weight:800}.tiny{font-size:.95rem;color:#4b6894;text-align:center}.badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}.badge{background:#fff2b9;color:#8e5200;border-radius:15px;padding:6px 12px;font-weight:800}.locked{opacity:.55}@keyframes bob{50%{transform:translateY(-15px)}}@media(max-width:700px){.app{padding:10px}.worlds{grid-template-columns:repeat(2,1fr);gap:12px}.world{min-height:170px}.world .symbol{font-size:2.6rem}.world strong{font-size:1rem}.hero{min-height:490px}.hero:before{top:2%;left:27%;width:46%;height:40%}.hero h1{margin-top:170px}.stage{padding:15px}.swatch{width:47px;height:47px}.top{justify-content:center}}
+</style><style>
+.child-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:4px 0 18px}.child-controls button{font-family:inherit;font-weight:800;font-size:1.12rem;border:3px solid white;border-radius:19px;padding:12px 18px;box-shadow:0 5px #062e78;min-height:58px}.kid-back{background:#fff;color:#103a89}.kid-listen{background:#ffdb40;color:#123a82}.kid-home{background:#0a398a;color:#fff}.nav button{min-height:52px;font-size:1.05rem}.option{min-height:78px;min-width:110px}.swatch{min-height:55px;min-width:55px}@media(max-width:480px){.child-controls{gap:6px}.child-controls button{font-size:.91rem;padding:10px 8px;min-height:52px}.top{margin-bottom:12px}}
 </style></head><body><main class="app"><header class="top"><span class="pill" id="stars">⭐ 0 étoile</span><span class="pill">🦸 SUPER JONAS · Niv. <span id="level">1</span></span><button class="pill" id="voice" onclick="toggleVoice()">🔊 Voix ON</button></header><div id="view"></div><footer class="tiny" style="color:white;margin:30px 0">💙 Super Jonas · Apprendre en s'amusant · Progression enregistrée sur cet appareil</footer></main><script>
 const worlds=[['🔢','Royaume des nombres','numbers'],['🧊','Planète des dizaines','tens'],['➕','Cité des additions','add'],['🎨','Atelier des couleurs','color'],['🔤','Académie de lecture','read'],['📚','Histoires magiques','story'],['🚂','Train des syllabes','train'],['🏆','Tour des défis','challenge']];
 const saved=JSON.parse(localStorage.getItem('superjonas-v3')||'{}');let state={stars:saved.stars||0,lesson:saved.lesson||0,done:saved.done||{},voice:saved.voice!==false};let mode='',round=0,current=null,colorStep=0,colorSelected='',readStep=0,feedback='',answered=false;
@@ -37,4 +39,73 @@ function paint(part){let d=drawings[Math.floor(colorStep/5)%2],target=d.parts[co
 function nextColor(){colorStep++;if(colorStep>=10){shell('🏆 Artiste de génie !','<div class="lesson"><div class="big">🎨 ⭐</div><p>Tu as terminé tes deux dessins !</p></div><div class="nav"><button class="cta" onclick="start(\'color\')">🎨 Recommencer</button></div>')}else renderColor()}
 function renderStory(){let l=lesson();let txt=state.lesson>=3?'MIMI A LU. LILI A LU.':'MIMI. LILI. MAMA.';shell('📚 Les histoires magiques','<p class="hint">Une petite histoire à écouter et à lire avec le robot</p><div class="lesson"><div class="big" style="font-size:clamp(2.6rem,7vw,5rem)">📖</div><div class="big" style="font-size:clamp(2rem,6vw,4rem)">'+txt+'</div><p>Écoute, puis essaie de lire les syllabes que tu connais.</p></div><div class="nav"><button class="action" onclick="say(\''+txt+'\')">🔊 Écouter l’histoire</button><button class="cta" onclick="start(\'read\')">📖 Apprendre à lire</button></div>');setTimeout(()=>say('Voici une petite histoire. '+txt),250)}
 save();home();
+
+/* Accessibility and navigation update: large persistent controls and voice recovery */
+let lastInstruction='Salut Jonas ! Choisis un monde pour commencer.';
+let voiceReady=false;
+function pickFrenchVoice(){
+  if(!('speechSynthesis' in window))return null;
+  const vs=window.speechSynthesis.getVoices();
+  return vs.find(v=>/^fr[-_](FR|CA)/i.test(v.lang)&&/premium|enhanced|amelie|thomas|audrey|hortense/i.test(v.name))
+    ||vs.find(v=>/^fr[-_]FR/i.test(v.lang))
+    ||vs.find(v=>/^fr/i.test(v.lang))||null;
+}
+say=function(t){
+  lastInstruction=String(t||'');
+  if(!state.voice||!('speechSynthesis' in window))return;
+  try{
+    window.speechSynthesis.cancel();
+    const utter=new SpeechSynthesisUtterance(lastInstruction);
+    utter.lang='fr-FR';utter.rate=.76;utter.pitch=1.06;utter.volume=1;
+    const v=pickFrenchVoice();if(v)utter.voice=v;
+    utter.onerror=function(e){if(e.error!=='interrupted'&&e.error!=='canceled'){const b=document.getElementById('listen-fixed');if(b)b.textContent='🔊 Appuie pour écouter';}};
+    window.speechSynthesis.speak(utter);
+  }catch(e){const b=document.getElementById('listen-fixed');if(b)b.textContent='🔊 Appuie pour écouter';}
+};
+function replayVoice(){if(!state.voice){state.voice=true;save()}say(lastInstruction||'Salut Jonas !')}
+toggleVoice=function(){
+  state.voice=!state.voice;save();
+  if(state.voice)say('Coucou Jonas ! Je suis ton robot. On joue ensemble !');
+  else if('speechSynthesis' in window)window.speechSynthesis.cancel();
+};
+function goBack(){
+  if('speechSynthesis' in window)window.speechSynthesis.cancel();
+  if(mode==='home'){map();return}
+  if(mode==='map'){home();return}
+  if(mode==='read'){
+    if(readStep>0){readStep--;renderRead();return}
+    map();return;
+  }
+  if(mode==='color'){
+    if(colorStep>0){colorStep--;renderColor();return}
+    map();return;
+  }
+  if(mode==='story'){map();return}
+  if(round>0){round--;question();return}
+  map();
+}
+nav=function(){
+  return '<div class="nav" aria-label="Navigation"><button class="action secondary" onclick="goBack()">⬅️ Retour</button><button class="action secondary" onclick="map()">🗺️ Mondes</button><button class="action secondary" onclick="home()">🏠 Accueil</button></div>';
+};
+const oldHome=home,oldMap=map,oldShell=shell,oldStart=start;
+home=function(){oldHome();lastInstruction='Bienvenue Super Jonas ! Appuie sur c’est parti pour découvrir les mondes.';addNavBar()};
+map=function(){oldMap();lastInstruction='Choisis un monde pour commencer ton aventure !';addNavBar()};
+shell=function(title,body){oldShell(title,body);addNavBar()};
+function addNavBar(){
+  document.getElementById('child-controls')?.remove();
+  const bar=document.createElement('div');
+  bar.id='child-controls';bar.className='child-controls';
+  bar.innerHTML='<button class="kid-back" onclick="goBack()">⬅️ RETOUR</button><button class="kid-listen" id="listen-fixed" onclick="replayVoice()">🔊 ÉCOUTER</button><button class="kid-home" onclick="map()">🗺️ MONDES</button>';
+  document.querySelector('.top').insertAdjacentElement('afterend',bar);
+}
+start=function(m){
+  if('speechSynthesis' in window)window.speechSynthesis.cancel();
+  oldStart(m);
+  if(m==='read')lastInstruction='Bienvenue à l’académie de lecture ! Écoute le robot et découvre les sons.';
+  if(m==='color')lastInstruction='Bienvenue dans l’atelier des couleurs ! Choisis une couleur, puis touche le dessin.';
+};
+document.addEventListener('keydown',function(e){if(e.key==='Escape'||e.key==='Backspace'&&e.target.tagName!=='INPUT'){e.preventDefault();goBack()}});
+if('speechSynthesis' in window){window.speechSynthesis.getVoices();window.speechSynthesis.onvoiceschanged=function(){pickFrenchVoice()}}
+addNavBar();
+
 </script></body></html>
