@@ -816,4 +816,10 @@ burgerAnswer=function(n){
  burgerSayLater('Bravo Jonas ! Tu as rendu la bonne monnaie. Un autre client arrive !');
 };
 
+
+/* Keep the visible customer ticket consistent with each spoken order. */
+burgerBase=function(message){
+ return '<div class="burger-world"><div class="burger-head"><h2>🍔 SNACK DE JONAS</h2><div>👨‍🍳 Service du midi · Client n° '+(burgerCustomerIndex+1)+'</div></div>'+message+'</div>';
+};
+
 </script></body></html>
