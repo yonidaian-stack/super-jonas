@@ -108,4 +108,48 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'||e.key==='Ba
 if('speechSynthesis' in window){window.speechSynthesis.getVoices();window.speechSynthesis.onvoiceschanged=function(){pickFrenchVoice()}}
 addNavBar();
 
+
+const pedagogic=[
+['Bonjour Jonas ! Aujourd’hui, nous allons faire de la magie avec les sons. Ferme les lèvres : mmmm. Maintenant, ouvre la bouche : aaaa. Très bien !','Écoute bien : mmmm… aaaa… mmmmaaaa. Tu entends ? Ça fait MA ! À toi de répéter.','Regarde : M et A. Ensemble, ça fait MA. Essaie de lire tout seul avant moi. Bravo !'],
+['Écoute ce son : llll. Et maintenant : aaaa.','On les rapproche doucement : llllaaaa. Ça fait LA ! À toi !','L et A font LA. Tu viens de lire une nouvelle syllabe !'],
+['On connaît déjà mmmm. Voici iiiii.','On rapproche : mmmm… iiii… MI !','M et I font MI. Essaie tout seul !'],
+['Écoute : llll… iiiii.','Ensemble : lllliiii. LI !','L et I font LI. Bravo Jonas !'],
+['Écoute le serpent : sssss. Et maintenant aaaa.','Ensemble : ssssaaaa. SA !','S et A font SA. À toi !'],
+['Écoute : rrrr… aaaa.','Ensemble : rrrraaaa. RA !','R et A font RA. Super !'],
+['Écoute : mmmm… oooo.','Ensemble : mmmmoooo. MO !','M et O font MO. Tu progresses !'],
+['Écoute : p… aaaa.','Ensemble : p… aaaa. PA !','P et A font PA. Bravo champion !']
+];
+let voiceRole='teacher';
+function speakLesson(){
+  voiceRole='teacher';
+  const text=pedagogic[Math.min(state.lesson,7)][readStep];
+  say(text);
+}
+const previousRenderRead=renderRead;
+renderRead=function(){
+  previousRenderRead();
+  const b=document.querySelector('.stage .nav .action');
+  if(b){b.setAttribute('onclick','speakLesson()');b.textContent='👩‍🏫 Écouter la maîtresse'}
+  const intro=document.querySelector('.stage .lesson');
+  if(intro)intro.insertAdjacentHTML('afterend','<p class="tiny">👂 Écoute, répète, puis avance quand tu es prêt.</p>');
+  speakLesson();
+};
+const previousReplayVoice=replayVoice;
+replayVoice=function(){
+  if(mode==='read'&&document.querySelector('.stage .lesson')){speakLesson();return}
+  previousReplayVoice();
+};
+const previousSay=say;
+say=function(t){
+  if('speechSynthesis' in window)window.speechSynthesis.cancel();
+  lastInstruction=String(t||'');
+  if(!state.voice||!('speechSynthesis' in window))return;
+  const u=new SpeechSynthesisUtterance(lastInstruction);
+  u.lang='fr-FR';u.rate=voiceRole==='teacher'?.78:.9;u.pitch=voiceRole==='teacher'?1:1.13;
+  const voices=window.speechSynthesis.getVoices().filter(v=>/^fr/i.test(v.lang));
+  const chosen=voices.find(v=>/amelie|audrey|hortense|marie|female/i.test(v.name))||voices[0];
+  if(chosen)u.voice=chosen;
+  window.speechSynthesis.speak(u);
+};
+
 </script></body></html>
