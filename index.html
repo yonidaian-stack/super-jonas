@@ -3,6 +3,8 @@
 :root{font-family:'Baloo 2',system-ui,sans-serif;color:#fff;background:#126ac8}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 70% 0,#66dcff 0,transparent 40%),linear-gradient(#0874d9,#44b6f5 60%,#0672b9);background-attachment:fixed}button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visible{outline:4px solid #ffdd27;outline-offset:3px}.app{max-width:1180px;margin:auto;padding:18px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;flex-wrap:wrap}.pill{border:3px solid #c6f4ff;background:#082b80;border-radius:20px;padding:7px 17px;box-shadow:0 5px #061a55;font-weight:800}.top button{color:white}.title{text-align:center;font-size:clamp(2.2rem,6vw,4.8rem);line-height:1.05;text-shadow:0 6px #073177;margin:20px auto}.sub{text-align:center;font-size:1.25rem;font-weight:800}.hero{position:relative;min-height:480px;border:5px solid #d3f8ff;border-radius:36px;box-shadow:0 12px #073879;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;background:linear-gradient(#074b9c55,#063a8a66),url('assets/hero-world.svg') center/cover}.hero:before{content:'';position:absolute;top:14%;left:4%;width:35%;height:60%;background:url('assets/super-jonas.svg') center/contain no-repeat;filter:drop-shadow(0 8px 10px #04296388);animation:bob 3s infinite}.hero h1{position:relative;text-align:center;font-size:clamp(3.5rem,10vw,7.7rem);line-height:.88;margin:30px 0 5px;color:#ffdc3a;-webkit-text-stroke:2px #fff;text-shadow:0 7px #f05b28,0 13px #08377c;transform:rotate(-3deg)}.hero p{background:#07286bdb;padding:8px 22px;border-radius:30px;font-size:1.2rem;font-weight:800}.hero .cta{margin:20px 0}.cta{border:4px solid white;border-radius:24px;background:linear-gradient(#ffed6e,#ffb300);color:#102e74;font-size:1.55rem;font-weight:800;padding:12px 36px;box-shadow:0 8px #b97106}.cta:active,.option:active{transform:translateY(4px);box-shadow:none}.worlds{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:25px 0}.world{position:relative;min-height:220px;border:4px solid #c9f5ff;border-radius:26px;box-shadow:0 8px #062a74;overflow:hidden;color:white;background:linear-gradient(0deg,#08236bed,transparent 75%),url('assets/worlds.svg') var(--pos) center/600% 100% no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:end;padding:16px}.world .symbol{font-size:3.7rem;filter:drop-shadow(0 4px 2px #05327e)}.world strong{font-size:1.28rem;text-shadow:0 3px #062660;line-height:1.1}.world small{background:#082c7d;border-radius:20px;padding:2px 15px;font-size:.95rem}.world:hover{transform:translateY(-4px)}.stage{border:5px solid #d4f6ff;border-radius:30px;background:linear-gradient(#f8fdff,#d8efff);color:#12377d;box-shadow:0 11px #07367b;padding:25px;max-width:900px;margin:20px auto;min-height:350px}.stage h2{font-size:clamp(1.7rem,4vw,2.6rem);text-align:center;margin:0 0 8px}.stage .hint{text-align:center;font-size:1.15rem;font-weight:700}.lesson{background:#fff;border:3px solid #9bd7fa;border-radius:24px;padding:20px;text-align:center;margin:20px auto;max-width:670px}.big{font-size:clamp(4rem,12vw,8rem);font-weight:800;line-height:1.15;color:#075bd0;letter-spacing:.03em}.big span{color:#ff6a35}.choices{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin:20px 0}.option{background:linear-gradient(#fff,#d6ecff);border:4px solid white;outline:2px solid #7fc4f5;border-radius:20px;min-width:100px;padding:12px 20px;color:#123e92;font-weight:800;font-size:clamp(1.5rem,4vw,2.3rem);box-shadow:0 6px #77a9dc}.action{border:0;background:#0b64d2;color:white;padding:12px 20px;border-radius:18px;font-weight:800;font-size:1.08rem;box-shadow:0 5px #073b89}.secondary{background:#fff;color:#0751aa;border:3px solid #83c5ef;box-shadow:0 4px #8cb7d6}.nav{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}.feedback{text-align:center;min-height:35px;font-weight:800;font-size:1.35rem}.robot{font-size:3rem}.progress{height:15px;border-radius:20px;background:#c4dcf4;overflow:hidden;max-width:500px;margin:12px auto}.progress>div{height:100%;background:linear-gradient(90deg,#1fc888,#ffdb3b);transition:width .3s}.palette{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0}.swatch{border:4px solid white;border-radius:50%;width:58px;height:58px;box-shadow:0 4px #8baed5}.swatch.selected{outline:5px solid #ffb400;transform:scale(1.1)}.art{display:block;width:min(100%,500px);max-height:390px;margin:12px auto;background:#fff;border-radius:22px;border:4px solid #a7d5f7}.art [data-part]{cursor:pointer;stroke:#173a70;stroke-width:5;transition:fill .2s}.instruction{background:#fff8d9;border:3px solid #ffcf54;border-radius:20px;padding:12px;text-align:center;font-size:1.3rem;font-weight:800}.tiny{font-size:.95rem;color:#4b6894;text-align:center}.badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}.badge{background:#fff2b9;color:#8e5200;border-radius:15px;padding:6px 12px;font-weight:800}.locked{opacity:.55}@keyframes bob{50%{transform:translateY(-15px)}}@media(max-width:700px){.app{padding:10px}.worlds{grid-template-columns:repeat(2,1fr);gap:12px}.world{min-height:170px}.world .symbol{font-size:2.6rem}.world strong{font-size:1rem}.hero{min-height:490px}.hero:before{top:2%;left:27%;width:46%;height:40%}.hero h1{margin-top:170px}.stage{padding:15px}.swatch{width:47px;height:47px}.top{justify-content:center}}
 </style><style>
 .child-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:4px 0 18px}.child-controls button{font-family:inherit;font-weight:800;font-size:1.12rem;border:3px solid white;border-radius:19px;padding:12px 18px;box-shadow:0 5px #062e78;min-height:58px}.kid-back{background:#fff;color:#103a89}.kid-listen{background:#ffdb40;color:#123a82}.kid-home{background:#0a398a;color:#fff}.nav button{min-height:52px;font-size:1.05rem}.option{min-height:78px;min-width:110px}.swatch{min-height:55px;min-width:55px}@media(max-width:480px){.child-controls{gap:6px}.child-controls button{font-size:.91rem;padding:10px 8px;min-height:52px}.top{margin-bottom:12px}}
+</style><style>
+.level-picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:13px;margin:20px 0}.level-picks button{background:#fff;color:#123a81;border:4px solid #9ceaff;border-radius:22px;padding:22px 10px;font-size:1.2rem;font-weight:900;min-height:118px;box-shadow:0 7px #1672ad}.count-pictures{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;justify-items:center;align-items:center;margin:16px auto;max-width:550px}.count-pictures span{display:grid;place-items:center;width:100%;aspect-ratio:1;background:#fff;border:3px solid #a9ddf5;border-radius:20px;font-size:clamp(2rem,7vw,3.8rem);box-shadow:0 5px #c4e9f9}.word-picture{font-size:clamp(6rem,19vw,10rem);background:white;border:4px solid #a9ddf5;border-radius:28px;padding:20px;text-align:center;margin:16px auto;max-width:360px}.oral{background:#fff9d6;border-radius:18px;padding:14px;color:#213c78;text-align:center;font-weight:700}.level-picks button:active,.option:active{transform:scale(.96)}
 </style></head><body><main class="app"><header class="top"><span class="pill" id="stars">⭐ 0 étoile</span><span class="pill">🦸 SUPER JONAS · Niv. <span id="level">1</span></span><button class="pill" id="voice" onclick="toggleVoice()">🔊 Voix ON</button></header><div id="view"></div><footer class="tiny" style="color:white;margin:30px 0">💙 Super Jonas · Apprendre en s'amusant · Progression enregistrée sur cet appareil</footer></main><script>
 const worlds=[['🔢','Royaume des nombres','numbers'],['🧊','Planète des dizaines','tens'],['➕','Cité des additions','add'],['🎨','Atelier des couleurs','color'],['🔤','Académie de lecture','read'],['📚','Histoires magiques','story'],['🚂','Train des syllabes','train'],['🏆','Tour des défis','challenge']];
 const saved=JSON.parse(localStorage.getItem('superjonas-v3')||'{}');let state={stars:saved.stars||0,lesson:saved.lesson||0,done:saved.done||{},voice:saved.voice!==false};let mode='',round=0,current=null,colorStep=0,colorSelected='',readStep=0,feedback='',answered=false;
@@ -237,6 +239,93 @@ nextQuestion=function(){
  if(round>=exerciseDeck.length){
  shell('🏆 Mission accomplie !','<div class="lesson"><div class="big">⭐⭐⭐⭐⭐</div><p class="hint">Tu as terminé les '+exerciseDeck.length+' défis différents !</p></div><div class="nav"><button class="cta" onclick="start(mode)">🔁 Nouvelle série</button></div>');
  }else question();
+};
+
+
+/* Count the pictures: three progressive levels, ten distinct questions. */
+const countLevels=[
+ {label:'🌱 Niveau 1',detail:'1 à 5 images',min:1,max:5},
+ {label:'🌟 Niveau 2',detail:'6 à 10 images',min:6,max:10},
+ {label:'🚀 Niveau 3',detail:'11 à 20 images',min:11,max:20}
+];
+const pictureSet=['🍎','🐶','🦋','⭐','🚗','🐸','🍓','🐠','🌸','🎈','🐱','🍌','⚽','🐝','🍉','🐧','🍒','🚀','🦄','🌞'];
+const wordSet=[
+ {icon:'🐱',word:'CHAT',other:['CHIEN','LUNE']},
+ {icon:'🐶',word:'CHIEN',other:['CHAT','LIVRE']},
+ {icon:'🌞',word:'SOLEIL',other:['LUNE','BALLON']},
+ {icon:'🌙',word:'LUNE',other:['SOLEIL','POMME']},
+ {icon:'🍎',word:'POMME',other:['POIRE','MAISON']},
+ {icon:'🍌',word:'BANANE',other:['POMME','LIVRE']},
+ {icon:'🏠',word:'MAISON',other:['MOTO','CHIEN']},
+ {icon:'🚗',word:'VOITURE',other:['BATEAU','VÉLO']},
+ {icon:'🚲',word:'VÉLO',other:['MOTO','BATEAU']},
+ {icon:'🦋',word:'PAPILLON',other:['LAPIN','BALLON']},
+ {icon:'🐰',word:'LAPIN',other:['PAPILLON','CHAT']},
+ {icon:'🎈',word:'BALLON',other:['PAPILLON','SOLEIL']},
+ {icon:'📚',word:'LIVRE',other:['MAISON','POMME']},
+ {icon:'🐟',word:'POISSON',other:['OISEAU','CHIEN']},
+ {icon:'🐦',word:'OISEAU',other:['POISSON','LAPIN']},
+ {icon:'🚢',word:'BATEAU',other:['VÉLO','VOITURE']}
+];
+let countLevel=0,activeDeck=[],wordLevel=0,oralRecognition=null;
+function showCountLevels(){
+ mode='countlevels';
+ shell('🧮 Combien d’images ?','<p class="instruction">Choisis ton niveau, Jonas !</p><div class="level-picks">'+countLevels.map((l,i)=>'<button onclick="beginCount('+i+')">'+l.label+'<br><small>'+l.detail+'</small></button>').join('')+'</div>');
+}
+function beginCount(level){
+ countLevel=level;mode='counting';round=0;
+ const cfg=countLevels[level];
+ const quantities=shuffled(Array.from({length:cfg.max-cfg.min+1},(_,i)=>i+cfg.min));
+ activeDeck=Array.from({length:10},(_,i)=>({qty:quantities[i%quantities.length],icon:pictureSet[(i+level*6+Math.floor(Math.random()*5))%pictureSet.length]}));
+ renderCount();
+}
+function renderCount(){
+ const q=activeDeck[round];answered=false;
+ const n=q.qty;
+ const candidates=shuffled([n,n+1,n>1?n-1:n+2,n+2]).filter((v,i,a)=>v>0&&a.indexOf(v)===i).slice(0,3);
+ current={answer:String(n),prompt:'Compte les images. Combien y en a-t-il ?'};
+ shell('🧮 '+countLevels[countLevel].label,'<p class="hint">Question '+(round+1)+' / 10</p><div class="progress"><div style="width:'+(round*10)+'%"></div></div><p class="instruction">Combien y en a-t-il ?</p><div class="count-pictures">'+Array(n).fill('<span>'+q.icon+'</span>').join('')+'</div><div id="answers">'+options(candidates,n)+'</div><div class="feedback" id="feedback"></div>');
+}
+function beginWords(){
+ mode='words';round=0;activeDeck=shuffled(wordSet).slice(0,10);renderWords();
+}
+function renderWords(){
+ answered=false;
+ const q=activeDeck[round];
+ current={answer:q.word,prompt:'Regarde l’image. Quel est ce mot ?'};
+ shell('🗣️ Les mots en images','<p class="hint">Image '+(round+1)+' / 10</p><div class="progress"><div style="width:'+(round*10)+'%"></div></div><div class="word-picture">'+q.icon+'</div><p class="oral">👄 Dis le nom de l’image à voix haute !</p><p class="instruction">Puis touche le bon mot.</p><div id="answers">'+options([q.word,...q.other],q.word)+'</div><div class="feedback" id="feedback"></div>');
+}
+const prevAnswerForGames=answer;
+answer=function(v){
+ if(mode!=='counting'&&mode!=='words')return prevAnswerForGames(v);
+ if(answered)return;
+ const f=document.getElementById('feedback');
+ if(String(v)===current.answer){
+  answered=true;earn();
+  f.textContent=mode==='counting'?'🌟 Bravo ! Tu as bien compté !':'🌟 Bravo ! Tu as trouvé le mot !';
+  document.getElementById('answers').innerHTML='<div class="nav"><button class="cta" onclick="nextPicture()">➡️ Suivant</button></div>';
+ }else f.textContent='💙 Essaie encore, tu peux y arriver !';
+};
+function nextPicture(){
+ round++;
+ if(round>=10){
+  shell('🏆 Super champion !','<div class="lesson"><div class="big">🌟🏅🌟</div><p class="hint">Tu as réussi tes 10 images !</p></div><div class="nav"><button class="cta" onclick="'+(mode==='counting'?'showCountLevels()':'beginWords()')+'">🎮 Rejouer</button></div>');
+ }else if(mode==='counting')renderCount();else renderWords();
+}
+const priorMapForGames=map;
+map=function(){
+ priorMapForGames();
+ const worldList=document.querySelector('.worlds');
+ if(worldList){
+  worldList.insertAdjacentHTML('afterbegin','<button class="world" style="--pos:0%" onclick="showCountLevels()"><span class="symbol">🧮</span><strong>Combien d’images ?</strong><small>🌱 3 niveaux</small></button>');
+  worldList.insertAdjacentHTML('beforeend','<button class="world" style="--pos:80%" onclick="beginWords()"><span class="symbol">🗣️</span><strong>Les mots en images</strong><small>👄 Je dis le mot</small></button>');
+ }
+};
+const priorBackForGames=goBack;
+goBack=function(){
+ if(mode==='counting'){if(round>0){round--;renderCount()}else showCountLevels();return}
+ if(mode==='countlevels'||mode==='words'){if(mode==='words'&&round>0){round--;renderWords()}else map();return}
+ priorBackForGames();
 };
 
 </script></body></html>
