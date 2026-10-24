@@ -822,4 +822,28 @@ burgerBase=function(message){
  return '<div class="burger-world"><div class="burger-head"><h2>🍔 SNACK DE JONAS</h2><div>👨‍🍳 Service du midi · Client n° '+(burgerCustomerIndex+1)+'</div></div>'+message+'</div>';
 };
 
+
+/* Restaurant games side by side in the world selection. */
+const mapBeforeRestaurantPair=map;
+map=function(){
+ mapBeforeRestaurantPair();
+ if(mode!=='map')return;
+ const pizza=[...document.querySelectorAll('button.world')].find(b=>b.textContent.includes('LA PIZZERIA DE JONAS'));
+ const burger=[...document.querySelectorAll('button')].find(b=>b.textContent.includes('LE SNACK DE JONAS'));
+ if(!pizza||!burger)return;
+ burger.innerHTML='<span class="symbol">👨‍🍳🍔</span><strong>LE SNACK DE JONAS</strong><small>🔊 Commandes vocales · Burgers variés</small>';
+ burger.classList.add('world');
+ burger.removeAttribute('style');
+ burger.style.cssText='--pos:0%;background:linear-gradient(140deg,#f6ae44,#ed7554);border:4px solid #ffe8a8';
+ pizza.parentElement.insertBefore(burger,pizza.nextSibling);
+ const parent=pizza.parentElement;
+ if(!parent.classList.contains('restaurant-pair-grid')){
+  const wrap=document.createElement('div');
+  wrap.className='restaurant-pair-grid';
+  wrap.style.cssText='display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;grid-column:1/-1;width:100%;margin:8px 0';
+  parent.insertBefore(wrap,pizza);
+  wrap.appendChild(pizza);wrap.appendChild(burger);
+ }
+};
+
 </script></body></html>
