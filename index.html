@@ -152,4 +152,35 @@ say=function(t){
   window.speechSynthesis.speak(u);
 };
 
+
+/* Temporarily mute synthetic lesson speech: phonics needs verified human audio. */
+const lessonSyntheticSpeechDisabled=true;
+const _lessonSay=say;
+say=function(t){
+  lastInstruction=String(t||'');
+  if(mode==='read'||mode==='story'||mode==='train'){
+    if('speechSynthesis' in window)window.speechSynthesis.cancel();
+    return;
+  }
+  _lessonSay(t);
+};
+const _lessonReplay=replayVoice;
+replayVoice=function(){
+  if(mode==='read'||mode==='story'||mode==='train'){
+    if('speechSynthesis' in window)window.speechSynthesis.cancel();
+    const b=document.getElementById('listen-fixed');
+    if(b)b.textContent='📖 Lis avec un adulte';
+    return;
+  }
+  _lessonReplay();
+};
+const _lessonRender=renderRead;
+renderRead=function(){
+  _lessonRender();
+  const b=document.querySelector('[onclick="speakLesson()"]');
+  if(b){b.disabled=true;b.textContent='🎧 Audio en préparation';b.title='La voix synthétique a été retirée des leçons.';}
+  const f=document.getElementById('listen-fixed');
+  if(f)f.textContent='📖 Lecture';
+};
+
 </script></body></html>
